@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .navbar {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 50px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-container h2 {
+            text-align: center;
+        }
+
+        input{
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .login-container #submitBt {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .login-container #submitBt:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+	<div class="navbar">
+        <a href="GetStarted">
+            <h1>Open House</h1>
+        </a>
+    </div>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form>
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" required id="usin"><br>
+
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required id="pswin"><br>
+
+            <input type="button" value="Login" id="submitBt" onclick="valid()">
+        </form>
+    </div>
+    <script>
+    	function valid(){
+    		event.preventDefault();
+    		
+    		us = document.getElementById("username").value;
+	    	pw = document.getElementById("password").value;
+	    	url = "ValidateLogin?username=" + encodeURIComponent(us) + "&password=" + encodeURIComponent(pw);
+
+	        request = new Request(url, {
+	            method: "GET"
+	        });
+	    	
+	    	fetch(request)
+	    		.then((response) => {
+	    			return response.text();
+	    		})
+	    		.then((html) => {
+	    			if (html == "true"){
+	    				window.location.href = "Home";
+	    			} else {
+	    				alert("Username or password is incorrect.");
+	    			}
+	    		})
+    	}
+    </script>
+</body>
+</html>

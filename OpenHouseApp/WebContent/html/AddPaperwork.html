@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paperwork Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .navbar {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+            margin-top: 50px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h2 {
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .container #submitBt {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .container #submitBt:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/OpenHouseApp/Home">
+            <h1>Open House</h1>
+        </a>
+    </div>
+    <div class="container">
+        <h2>Add Paperwork</h2>
+        <form>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br>
+            
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" required></textarea><br>
+            
+            <label for="paperworkLink">Paperwork Link:</label><br>
+            <input type="text" id="paperworkLink" name="paperworkLink"><br>
+            
+            <label for="finished">Finished:</label>
+            <input type="checkbox" id="finished" name="finished"><br>
+            
+            <label for="offerId">Offer ID:</label><br>
+            <input type="number" id="offerId" name="offerId" required><br>
+            
+            <input type="button" value="Signup" id="submitBt" onclick="valid()">
+        </form>
+    </div>
+    <script>
+    	function valid(){
+    		var us = document.getElementById("name").value
+            var dc = document.getElementById("description").value
+            var lk = document.getElementById("paperworkLink").value
+            var fn = document.getElementById("finished").value
+            var offer = document.getElementById("offerId").value
+            
+            window.location.href = "/OpenHouseApp/CreatePaperwork?Name="+us+"&Description="+dc+"&Link="+lk+"&Finished="+fn+"&OfferId="+offer
+    	}
+    </script>
+</body>
+</html>
